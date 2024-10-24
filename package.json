@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "\"Training project for creating a CLI tool to compare configuration files and display differences.\"",
   "main": "index.js",
+  "type": "module",
   "bin": {
     "gendiff": "./bin/gendiff.js"
   },
