@@ -1,6 +1,9 @@
 import path from 'path';
-import expect from 'chai/lib/chai/interface/expect.js';
-import gendiff from '../bin/gendiff.js';
+import { fileURLToPath } from 'url';
+import diff from '../src/diff.js';
+
+const __filename = fileURLToPath(import.meta.url); // Получение текущего файла
+const __dirname = path.dirname(__filename); // Получение директории файла
 
 const expect1 = `{
   host : hexlet.io
@@ -37,8 +40,8 @@ test('two plain objects', () => {
   const filePath2 = path.join(__dirname, '../__fixtures__/file2.json');
   const filePath3 = path.join(__dirname, '../__fixtures__/file3Empty.json');
 
-  expect(gendiff(filePath1, filePath2)).toEqual(expect1);
-  expect(gendiff(filePath1, filePath1)).toEqual(expect2);
-  expect(gendiff(filePath1, filePath3)).toEqual(expect3);
-  expect(gendiff(filePath3, filePath1)).toEqual(expect4);
+  expect(diff(filePath1, filePath2)).toEqual(expect1);
+  expect(diff(filePath1, filePath1)).toEqual(expect2);
+  expect(diff(filePath1, filePath3)).toEqual(expect3);
+  expect(diff(filePath3, filePath1)).toEqual(expect4);
 });
