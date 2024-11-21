@@ -5,7 +5,6 @@ import parse from './parser.js';
 import readFile from './reader.js';
 
 const diff = (filepath1, filepath2) => {
-
   const fullPath1 = getFullPath(filepath1);
   const fullPath2 = getFullPath(filepath2);
   const content1 = readFile(fullPath1);

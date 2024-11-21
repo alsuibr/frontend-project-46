@@ -11,7 +11,6 @@ gendiff
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    //console.log('Arguments:', filepath1, filepath2); // Отладка
     console.log(diff(filepath1, filepath2));
   });
 
