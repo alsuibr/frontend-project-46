@@ -32,3 +32,9 @@ jobs:
         run: make test
       - name: Run Jest tests with coverage
         run: npx jest --coverage
+      - name: Upload coverage to CodeClimate
+      - run: |
+          curl -s https://codeclimate.com/test_reports \
+          --data-binary @coverage/lcov.info \
+          -H "Content-Type: text/plain" \
+          -H "CC-Test-Reporter-Id: ${{ secrets.CC_TEST_REPORTER_ID }}"
