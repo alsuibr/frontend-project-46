@@ -28,13 +28,11 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: make test
-      - name: Run Jest tests with coverage
+      - name: Run tests with coverage
         run: npx jest --coverage
       - name: Upload coverage to CodeClimate
         run: |
           curl -s https://api.codeclimate.com/v1/test_reports \
-          --data-binary @coverage/lcov.info \
-          -H "Content-Type: text/plain" \
-          -H "CC-Test-Reporter-Id: ${{ secrets.CC_TEST_REPORTER_ID }}"
+            --data-binary @coverage/lcov.info \
+            -H "Content-Type: text/plain" \
+            -H "CC-Test-Reporter-Id: ${{ secrets.CC_TEST_REPORTER_ID }}"
