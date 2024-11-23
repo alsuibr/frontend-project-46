@@ -1,5 +1,5 @@
 const getFormat = (path) => {
-  const format = path.split('.').slice(-1);
+  const format = path.split('.').at(-1);
   return format;
 };
 

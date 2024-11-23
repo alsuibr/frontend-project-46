@@ -35,13 +35,35 @@ const expect4 = `{
 + follow : false
 }`;
 
-test('two plain objects', () => {
-  const filePath1 = path.join(__dirname, '../__fixtures__/file1.json');
-  const filePath2 = path.join(__dirname, '../__fixtures__/file2.json');
-  const filePath3 = path.join(__dirname, '../__fixtures__/file3Empty.json');
+const expect5 = `{
 
-  expect(diff(filePath1, filePath2)).toEqual(expect1);
-  expect(diff(filePath1, filePath1)).toEqual(expect2);
-  expect(diff(filePath1, filePath3)).toEqual(expect3);
-  expect(diff(filePath3, filePath1)).toEqual(expect4);
+}`;
+
+const plainJson1 = path.join(__dirname, '../__fixtures__/plainFile1.json');
+const plainJson2 = path.join(__dirname, '../__fixtures__/plainFile2.json');
+const emptyJson = path.join(__dirname, '../__fixtures__/empty.json');
+const plainYml1 = path.join(__dirname, '../__fixtures__/plainFile1.yml');
+const plainYml2 = path.join(__dirname, '../__fixtures__/plainFile2.yml');
+const emptyYml = path.join(__dirname, '../__fixtures__/empty.yml');
+
+test('plain json files', () => {
+  expect(diff(plainJson1, plainJson2)).toEqual(expect1);
+  expect(diff(plainJson1, plainJson1)).toEqual(expect2);
+  expect(diff(plainJson1, emptyJson)).toEqual(expect3);
+  expect(diff(emptyJson, plainJson1)).toEqual(expect4);
+});
+
+test('plain yml files', () => {
+  expect(diff(plainYml1, plainYml2)).toEqual(expect1);
+  expect(diff(plainYml1, plainYml1)).toEqual(expect2);
+  expect(diff(plainYml1, emptyYml)).toEqual(expect3);
+  expect(diff(emptyYml, plainYml1)).toEqual(expect4);
+});
+
+test('plain json and yml files', () => {
+  expect(diff(plainYml1, plainJson2)).toEqual(expect1);
+  expect(diff(plainYml1, plainJson1)).toEqual(expect2);
+  expect(diff(plainYml1, emptyJson)).toEqual(expect3);
+  expect(diff(emptyYml, plainJson1)).toEqual(expect4);
+  expect(diff(emptyYml, emptyJson)).toEqual(expect5);
 });
