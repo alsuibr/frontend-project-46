@@ -1,0 +1,12 @@
+key1: unchangedValue1
+key2: updatedValue2
+key4: addedValue4
+key5:
+  nestedKey51: value51
+key6: value6
+key7:
+  nestedKey71: unchangedValue71
+  nestedKey72: updatedValue72
+  nestedKey74: addedValue74
+  nestedKey75:
+    nestedKey751: value751

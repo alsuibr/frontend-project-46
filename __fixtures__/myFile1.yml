@@ -1,0 +1,11 @@
+key1: unchangedValue1
+key2: value2
+key3: removedValue3
+key5: value5
+key6:
+  nestedKey61: value61
+key7:
+  nestedKey71: unchangedValue71
+  nestedKey72: value72
+  nestedKey73: removedValue73
+  nestedKey75: value75

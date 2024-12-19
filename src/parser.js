@@ -1,14 +1,13 @@
 import yaml from 'js-yaml';
 
+// eslint-disable-next-line consistent-return
 const parse = (content, format) => {
-  let parsed;
   if (format === 'json') {
-    parsed = JSON.parse(content);
-  } else if (format === 'yml' || format === 'yaml') {
-    parsed = yaml.load(content);
+    return JSON.parse(content);
   }
-
-  return parsed;
+  if (format === 'yml' || format === 'yaml') {
+    return yaml.load(content);
+  }
 };
 
 export default parse;

@@ -1,36 +1,43 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs';
+// import fs from 'fs';
 import diff from '../src/diff.js';
+import myExpectedAST from '../__fixtures__/expected/myExpectedAST.js';
 
 const __filename = fileURLToPath(import.meta.url); // Получение текущего файла
 const __dirname = path.dirname(__filename); // Получение директории файла
 // не использую import.meta.dirname тк использую версию Node.js v18.20.4 ()
 
-let json1;
-let json2;
-let yml1;
-let yml2;
-let twoFilesStylish;
+// let json1;
+// let json2;
+// let yml1;
+// let yml2;
+// let twoFilesStylish;
+let myJson1;
+let myJson2;
+let myYml1;
+let myYml2;
 
 beforeAll(() => {
-  json1 = path.join(__dirname, '../__fixtures__/file1.json');
-  json2 = path.join(__dirname, '../__fixtures__/file2.json');
-  // const emptyJson = path.join(__dirname, '../__fixtures__/empty.json');
-  yml1 = path.join(__dirname, '../__fixtures__/file1.yml');
-  yml2 = path.join(__dirname, '../__fixtures__/file2.yml');
-  // const emptyYml = path.join(__dirname, '../__fixtures__/empty.yml');
-  twoFilesStylish = fs.readFileSync(path.join(__dirname, '../__fixtures__/twoFilesStylish.txt'), 'utf-8');
+  myJson1 = path.join(__dirname, '../__fixtures__/myFile1.json');
+  myJson2 = path.join(__dirname, '../__fixtures__/myFile2.json');
+  myYml1 = path.join(__dirname, '../__fixtures__/myFile1.yml');
+  myYml2 = path.join(__dirname, '../__fixtures__/myfile2.yml');
+  // json1 = path.join(__dirname, '../__fixtures__/file1.json');
+  // json2 = path.join(__dirname, '../__fixtures__/file2.json');
+  // yml1 = path.join(__dirname, '../__fixtures__/file1.yml');
+  // yml2 = path.join(__dirname, '../__fixtures__/file2.yml');
+  // eslint-disable-next-line max-len
+  // twoFilesStylish = fs.readFileSync(path.join(__dirname, '../__fixtures__/twoFilesStylish.txt'), 'utf-8');
 });
 
-test('two json files, default stylish', () => {
-  expect(diff(json1, json2)).toEqual(twoFilesStylish);
+test('my json files comparison AST', () => {
+  // const result = diff(myJson1, myJson2);
+  // console.log('Result:', JSON.stringify(result, null, 2));
+  // console.log('Expected:', JSON.stringify(myExpectedAST, null, 2));
+  expect(diff(myJson1, myJson2)).toEqual(myExpectedAST);
 });
 
-test('two yml files, default stylish', () => {
-  expect(diff(yml1, yml2)).toEqual(twoFilesStylish);
-});
-
-test('json and yml files, default stylish', () => {
-  expect(diff(yml1, json2)).toEqual(twoFilesStylish);
+test('my yml files comparison AST', () => {
+  expect(diff(myYml1, myYml2)).toEqual(myExpectedAST);
 });
