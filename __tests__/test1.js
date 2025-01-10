@@ -29,3 +29,7 @@ test('json files comparison AST', () => {
 test('yml files comparison AST', () => {
   expect(diff(yml1, yml2)).toEqual(twoFilesStylish);
 });
+
+test('json file and yml file comparison AST', () => {
+  expect(diff(yml1, yml2)).toEqual(twoFilesStylish);
+});
