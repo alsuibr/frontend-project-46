@@ -25,7 +25,7 @@ const stylish = (ast) => {
   const iter = (nodes, depth) => {
     const lines = nodes.flatMap((node) => {
       const {
-        key, type, value, newValue, children,
+        key, type, value, oldValue, newValue, children,
       } = node;
 
       const currentIndent = makeIndent(depth, -2);
@@ -40,7 +40,7 @@ const stylish = (ast) => {
           return `${currentIndent}  ${keyValueString}`;
         case 'updated':
           return [
-            `${currentIndent}- ${keyValueString}`,
+            `${currentIndent}- ${key}: ${stringify(oldValue, depth)}`,
             `${currentIndent}+ ${key}: ${stringify(newValue, depth)}`,
           ];
         case 'nested': {

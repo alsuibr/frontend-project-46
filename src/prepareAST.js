@@ -1,6 +1,6 @@
 const prepareAST = (object1, object2) => {
   const isUpdated = (value1, value2) => !Object.is(value1, value2);
-  const isNested = (value) => Object.prototype.toString.call(value) === '[object Object]';
+  const isNested = (value) => value !== null && Object.prototype.toString.call(value) === '[object Object]';
   const hasKey = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
   const isAdded = (key, obj1, obj2) => !hasKey(obj1, key) && hasKey(obj2, key);
   const isRemoved = (key, obj1, obj2) => hasKey(obj1, key) && !hasKey(obj2, key);
@@ -22,7 +22,7 @@ const prepareAST = (object1, object2) => {
     }
     if (isUpdated(value1, value2)) {
       return {
-        key, type: 'updated', value: value1, newValue: value2,
+        key, type: 'updated', oldValue: value1, newValue: value2,
       };
     }
     return { key, type: 'unchanged', value: value1 };
